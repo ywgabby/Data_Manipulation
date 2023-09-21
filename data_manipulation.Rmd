@@ -1,0 +1,45 @@
+---
+title: "Data_manipulation"
+author: "Yaduo Wang"
+date: "2023-09-21"
+output: github_document
+---
+```{r,message = FALSE}
+library(tidyverse)
+```
+
+Let's import the `FAS_litters.csv` using a relative path.
+```{r}
+litters_df=
+  read_csv("FAS_litters.csv")
+litters_df
+```
+
+```{r}
+litters_df = janitor::clean_names(litters_df)
+view(litters_df)
+```
+
+select is used to select columns.
+```{r}
+select(litters_df, group, litter_number, gd0_weight)
+
+select(litters_df, gd0_weight, group)
+
+# it will arrange as your orders. 
+
+select(litters_df, group:gd_of_birth)
+
+select(litters_df, group, starts_with("pups"))
+
+select(litters_df, -litter_number)
+
+select(litters_df, -starts_with("gd"))
+
+select(litters_df, group, litter_id = litter_number)
+
+select(litters_df, group, litter_id = litter_number, everything())
+select(litters_df, gd0_weight, everything())
+# keep everthing else
+```
+
